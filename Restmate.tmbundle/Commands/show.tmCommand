@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+require "#{ENV['TM_BUNDLE_SUPPORT']}/lib/restmate"
+Restmate.new('Post', 'REST_URL').show</string>
+	<key>input</key>
+	<string>none</string>
+	<key>name</key>
+	<string>show</string>
+	<key>output</key>
+	<string>openAsNewDocument</string>
+	<key>tabTrigger</key>
+	<string>restmate.show</string>
+	<key>uuid</key>
+	<string>B20C27D3-2B22-445C-85A9-39AC4D0A76FE</string>
+</dict>
+</plist>
