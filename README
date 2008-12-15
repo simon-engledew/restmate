@@ -6,8 +6,12 @@ Adds two bundle commands, restmate.show<tab> and restmate.update<tab>.
 
 Configuration:
 
-Bundles > Bundle Editor > Show Bundle Editor
+Edit config.yml in <BUNDLE>/Support/config.yml to include the resource, the base url, and a whitelist of attributes that you want to edit:
 
-Restmate >
-
-Select show and update and edit your resource name and REST url.
+model: Post
+url: http://www.blog.com
+whitelist:
+  - id
+  - body
+  - title
+  - published

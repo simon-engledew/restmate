@@ -6,8 +6,8 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-require "#{ENV['TM_BUNDLE_SUPPORT']}/toothygoose"
-Restmate.instance.create</string>
+require "#{ENV['TM_BUNDLE_SUPPORT']}/init"
+$restmate.create</string>
 	<key>input</key>
 	<string>document</string>
 	<key>keyEquivalent</key>

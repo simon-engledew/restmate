@@ -9,24 +9,24 @@ require "#{ENV['TM_SUPPORT_PATH']}/lib/escape.rb"
 require "#{ENV['TM_SUPPORT_PATH']}/lib/progress.rb"
 
 class Restmate
-  
-  def initialize(model, site)
+
+  def initialize(model, site, *whitelist)
     Object.const_set(model, Class.new(ActiveResource::Base))
     
     @class = model.constantize
     @class.site = site
-    
+    @whitelist = whitelist.map(&:to_s)
+
     at_exit{ finalize }
   end
   
   def index
-    
   end
   
   def show
     contacting_server "Fetch #{@class}" do
       if model = select(@class.find(:all))
-        Bundle.exit(:create_document, model.attributes.to_yaml)
+        Bundle.exit(:create_document, write(model.attributes))
       end 
       Bundle.exit(:discard)
     end
@@ -36,10 +36,19 @@ class Restmate
     
   end
   
+  def build                                        
+    contacting_server "Building #{@class}" do
+      attributes = @class.get(:new)
+      attributes.delete :id.to_s
+      Bundle.exit(:create_document, write(attributes))
+    end
+    Bundle.exit(:discard)
+  end
+  
   def create
     contacting_server "Creating #{@class}" do
-      model = @class.new(YAML.load(STDIN))
-      model.id = nil
+      model = read
+      Bundle.exit(:show_tooltip, "#{@class} already created") if model.id
       model.save
     end
     Bundle.exit(:show_tooltip, "#{@class} created")
@@ -47,7 +56,7 @@ class Restmate
   
   def update
     contacting_server "Updating #{@class}" do
-      model = @class.new(YAML.load(STDIN))
+      model = read
       model.save
     end
     Bundle.exit(:show_tooltip, "#{@class} updated")
@@ -63,6 +72,18 @@ class Restmate
   end
 
 protected
+
+  def whitelist(attributes)
+    attributes.delete_if{|k,v|not @whitelist.include?(k)}
+  end
+  
+  def write(attributes)
+    whitelist(attributes).to_yaml
+  end
+  
+  def read
+    @class.new(whitelist(YAML.load(STDIN)))
+  end
 
   def select(models)
     index = Bundle.dropdown(
