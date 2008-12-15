@@ -2,7 +2,7 @@ A bundle that allows you to read and write RESTful resources in YAML.
 
 Requires Ruby, ActiveSupport and ActiveResource.
 
-Adds bundle commands: restmate.show, restmate.build, restmate.create and restmate.update<tab>.
+Adds bundle commands: restmate.show, restmate.build, restmate.create and restmate.update.
 
 Configuration:
 
