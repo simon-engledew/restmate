@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+require "#{ENV['TM_BUNDLE_SUPPORT']}/toothygoose"
+Restmate.instance.create</string>
+	<key>input</key>
+	<string>document</string>
+	<key>keyEquivalent</key>
+	<string>@</string>
+	<key>name</key>
+	<string>create</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>tabTrigger</key>
+	<string>restmate.create</string>
+	<key>uuid</key>
+	<string>AECED18D-41A7-4F84-8EC7-DD9E34095ADB</string>
+</dict>
+</plist>
