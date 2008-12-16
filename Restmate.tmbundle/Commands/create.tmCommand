@@ -10,8 +10,6 @@ require "#{ENV['TM_BUNDLE_SUPPORT']}/init"
 $restmate.create</string>
 	<key>input</key>
 	<string>document</string>
-	<key>keyEquivalent</key>
-	<string>@</string>
 	<key>name</key>
 	<string>create</string>
 	<key>output</key>
